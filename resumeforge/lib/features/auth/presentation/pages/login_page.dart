@@ -26,18 +26,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _handleLogin() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     setState(() => _isLoading = true);
-    
+
     // Use auth controller to sign in
-    final error = await ref.read(authControllerProvider.notifier).signIn(
-      email: _emailController.text.trim(),
-      password: _passwordController.text,
-    );
-    
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .signIn(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+        );
+
     if (mounted) {
       setState(() => _isLoading = false);
-      
+
       if (error == null) {
         // Success - navigate to dashboard
         context.go('/dashboard');
@@ -55,13 +57,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _handleGoogleSignIn() async {
     setState(() => _isLoading = true);
-    
+
     // Use auth controller to sign in with Google
-    final error = await ref.read(authControllerProvider.notifier).signInWithGoogle();
-    
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .signInWithGoogle();
+
     if (mounted) {
       setState(() => _isLoading = false);
-      
+
       if (error == null) {
         // Success - navigate to dashboard
         context.go('/dashboard');
@@ -110,7 +114,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 48),
-                  
+
                   // Email Field
                   TextFormField(
                     controller: _emailController,
@@ -130,7 +134,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Password Field
                   TextFormField(
                     controller: _passwordController,
@@ -150,7 +154,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Login Button
                   ElevatedButton(
                     onPressed: _isLoading ? null : _handleLogin,
@@ -163,7 +167,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         : const Text('Sign In'),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Divider
                   Row(
                     children: [
@@ -179,18 +183,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Google Sign In Button
                   OutlinedButton.icon(
                     onPressed: _isLoading ? null : _handleGoogleSignIn,
-                    icon: const Text('G', style: TextStyle(fontWeight: FontWeight.bold)),
+                    icon: const Text(
+                      'G',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     label: const Text('Google'),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Sign Up Link
                   TextButton(
                     onPressed: () {

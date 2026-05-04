@@ -243,7 +243,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   // Google Sign In Button
                   OutlinedButton.icon(
                     onPressed: _isLoading ? null : _handleGoogleSignIn,
-                    icon: const Text('G', style: TextStyle(fontWeight: FontWeight.bold)),
+                    icon: const Text(
+                      'G',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     label: const Text('Google'),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
